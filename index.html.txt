@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tank Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #ui {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    #health-bar-container {
+      width: 150px;
+      height: 20px;
+      background-color: #D3D3D3;
+      border: 10px solid #333;
+    }
+
+    #health-bar {
+      height: 100%;
+      background-color: red;
+      width: 100%;
+    }
+
+    #lives, #restart-btn, #fullscreen-btn {
+      font-family: sans-serif;
+      color: white;
+    }
+
+    #restart-btn, #fullscreen-btn {
+      padding: 5px 10px;
+      background-color: #444;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    #fullscreen-btn {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game" width="800" height="600"></canvas>
+  <div id="ui">
+    <div id="health-bar-container">
+      <div id="health-bar"></div>
+    </div>
+    <div id="lives">Lives: <span id="lives-count">3</span></div>
+    <button id="restart-btn" DGviuAtXwkNhoZJp2zVewVfh5DpMjucQVKm1dL5csisv>
+    <button DGviuAtXwkNhoZJp2zVewVfh5DpMjucQVKm1dL5csisv>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
