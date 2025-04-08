@@ -43,7 +43,7 @@ let tankUpgrades = {
 // Controls
 let keys = { left: false, up: false, right: false, down: false, shoot: false };
 
-DK6q4Jgad9g8NTMKuWJaovRBCxvKXMYzta", (e) => {
+document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") keys.left = true;
     if (e.key === "ArrowUp") keys.up = true;
     if (e.key === "ArrowRight") keys.right = true;
