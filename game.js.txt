@@ -29,7 +29,12 @@ let bossLevelInterval = 10; // Every 10 levels, a boss will appear
 
 let levelComplete = false; // Flag to indicate when the level is complete
 
-let coins = 0; // Player's coins
+let coins = 0; // Player's coins (initially 0)
+let storedCoins = localStorage.getItem('coins'); // Get coins from localStorage
+
+if (storedCoins) {
+    coins = parseInt(storedCoins); // If there's data, use it
+}
 
 let gameState = "menu"; // Current state: "menu" or "game"
 let upgradeState = "none"; // Track upgrade menu state (none, color, speed, health)
@@ -43,7 +48,7 @@ let tankUpgrades = {
 // Controls
 let keys = { left: false, up: false, right: false, down: false, shoot: false };
 
-DK6q4Jgad9g8NTMKuWJaovRBCxvKXMYzta", (e) => {
+document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") keys.left = true;
     if (e.key === "ArrowUp") keys.up = true;
     if (e.key === "ArrowRight") keys.right = true;
@@ -214,6 +219,7 @@ function detectCollisions() {
                     explosions.push({ x: enemy.x, y: enemy.y, size: 20 });
                     enemies.splice(j, 1);
                     coins += 5; // Add 5 coins for killing an enemy
+                    localStorage.setItem('coins', coins); // Store the updated coins in localStorage
                     i--;
                 }
                 bullets.splice(i, 1);
@@ -258,6 +264,7 @@ function checkLevelCompletion() {
             levelEnemyCount += 2; // Increase enemies per level
             enemies = []; // Clear enemies for the new level
             coins += 10; // Add 10 coins for completing the level
+            localStorage.setItem('coins', coins); // Store the updated coins in localStorage
             levelComplete = false; // Reset level completion status
         }, 1000); // Brief pause before next level
     }
@@ -277,6 +284,9 @@ function drawMainMenu() {
     ctx.fillText('Start Game', canvas.width / 2 - 60, canvas.height / 2 - 40);
     ctx.fillText('Upgrades', canvas.width / 2 - 60, canvas.height / 2);
     ctx.fillText('Quit', canvas.width / 2 - 60, canvas.height / 2 + 40);
+
+    // Display coins in the top-right corner of the main menu
+    ctx.fillText(`Coins: ${coins}`, canvas.width - 150, 30);
 }
 
 // Game over screen
@@ -310,7 +320,7 @@ function restartGame() {
     enemies = [];
     bullets = [];
     explosions = [];
-    coins = 0;
+    coins = 0; // Reset coins to 0 on restart
     currentLevel = 1;
     levelEnemyCount = 2;
     levelComplete = false;
