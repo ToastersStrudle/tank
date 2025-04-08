@@ -43,7 +43,7 @@ let tankUpgrades = {
 // Controls
 let keys = { left: false, up: false, right: false, down: false, shoot: false };
 
-document.addEventListener("keydown", (e) => {
+DK6q4Jgad9g8NTMKuWJaovRBCxvKXMYzta", (e) => {
     if (e.key === "ArrowLeft") keys.left = true;
     if (e.key === "ArrowUp") keys.up = true;
     if (e.key === "ArrowRight") keys.right = true;
@@ -319,17 +319,24 @@ function restartGame() {
 
 // Mouse event listener for menu and restart
 canvas.addEventListener('click', (e) => {
+    const mouseX = e.offsetX;
+    const mouseY = e.offsetY;
+
+    // Main menu click detection
     if (gameState === 'menu') {
-        // Check if the "Start Game" button was clicked
-        if (e.offsetY >= canvas.height / 2 - 40 && e.offsetY <= canvas.height / 2 - 10) {
-            gameState = 'game';
+        // Check if "Start Game" button was clicked
+        if (mouseX >= canvas.width / 2 - 60 && mouseX <= canvas.width / 2 + 60 &&
+            mouseY >= canvas.height / 2 - 40 && mouseY <= canvas.height / 2 - 10) {
+            gameState = 'game'; // Start the game
         }
-        // Check if the "Upgrades" button was clicked
-        if (e.offsetY >= canvas.height / 2 && e.offsetY <= canvas.height / 2 + 30) {
+        // Check if "Upgrades" button was clicked
+        if (mouseX >= canvas.width / 2 - 60 && mouseX <= canvas.width / 2 + 60 &&
+            mouseY >= canvas.height / 2 && mouseY <= canvas.height / 2 + 30) {
             gameState = 'upgrades'; // Show upgrades screen
         }
-        // Check if the "Quit" button was clicked
-        if (e.offsetY >= canvas.height / 2 + 40 && e.offsetY <= canvas.height / 2 + 70) {
+        // Check if "Quit" button was clicked
+        if (mouseX >= canvas.width / 2 - 60 && mouseX <= canvas.width / 2 + 60 &&
+            mouseY >= canvas.height / 2 + 40 && mouseY <= canvas.height / 2 + 70) {
             window.close();
         }
     } else if (gameState === 'gameover') {
@@ -358,9 +365,10 @@ function update() {
 
         checkLevelCompletion();
 
-        // Check if player health is 0, then go to gameover state
+        // Check if player health is 0, then go to menu state
         if (tank.health <= 0) {
-            gameState = 'gameover';
+            // Set the gameState to 'menu' to go back to the main menu
+            gameState = 'menu';
         }
 
         // Decrease cooldown after each frame
