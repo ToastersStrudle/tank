@@ -302,7 +302,7 @@ function drawMainMenu() {
 
     ctx.fillStyle = 'white';
     ctx.font = '30px Arial';
-    ctx.fillText('Tank Game', canvas.width / 2 - 75, canvas.height / 2 - 80);
+    ctx.fillText('ToasterStrudles Tank Game', canvas.width / 2 - 75, canvas.height / 2 - 190);
 
     ctx.font = '20px Arial';
     ctx.fillText('Start Game', canvas.width / 2 - 60, canvas.height / 2 - 40);
